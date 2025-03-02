@@ -4,8 +4,8 @@ import { Link } from "wouter";
 
 export default function Hero() {
   return (
-    <div className="relative overflow-hidden bg-background py-24">
-      <div className="container relative z-10">
+    <div className="relative overflow-hidden bg-background py-24 w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,13 +19,13 @@ export default function Hero() {
             <br />
             for the World
           </h1>
-          
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto px-4">
             Transforming industries through advanced AI solutions in Natural Language Processing
             and Computer Vision.
           </p>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 flex-wrap px-4">
             <Button asChild size="lg">
               <Link href="/solutions">Explore Solutions</Link>
             </Button>
