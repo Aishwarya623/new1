@@ -2,28 +2,33 @@ import { motion } from "framer-motion";
 import TeamGrid from "@/components/sections/TeamGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"; // Import Avatar component
 
 export default function Team() {
   const advisors = [
     {
-      name: "Prof. Abhik Choudhary",
+      id: "ABC",
       role: "Advisor",
-      institution: "Indian Institute of Science"
+      credentials: "Professor, Indian Institute of Science",
+      expertise: "AI Research & Development"
     },
     {
-      name: "Prof. Gandham Phanikumar",
+      id: "GPK",
       role: "Advisor",
-      institution: "Indian Institute of Technology, Madras"
+      credentials: "Professor, Indian Institute of Technology, Madras",
+      expertise: "Machine Learning Systems"
     },
     {
-      name: "Prof. Rajendra Munian",
+      id: "RMN",
       role: "Advisor",
-      institution: "Indian Institute of Technology, Ropar"
+      credentials: "Professor, Indian Institute of Technology, Ropar",
+      expertise: "Industrial AI Applications"
     },
     {
-      name: "Dr. Rashmi Patel",
+      id: "RPT",
       role: "Advisor",
-      institution: "M.B.B.S, M.S, Surgeon"
+      credentials: "M.B.B.S, M.S, Surgeon",
+      expertise: "Medical AI Applications"
     }
   ];
 
@@ -68,9 +73,18 @@ export default function Team() {
                 <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardContent className="pt-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{advisor.name}</h3>
-                    <p className="text-primary font-medium">{advisor.role}</p>
-                    <p className="text-muted-foreground">{advisor.institution}</p>
+                    <div className="flex items-center gap-4">
+                      <Avatar className="h-12 w-12 transform transition-transform duration-300 group-hover:scale-110">
+                        <AvatarFallback className="bg-primary/10 text-primary">
+                          {advisor.id}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-primary font-medium">{advisor.role}</p>
+                        <p className="text-muted-foreground">{advisor.credentials}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-4">{advisor.expertise}</p>
                   </CardContent>
                 </Card>
               </motion.div>

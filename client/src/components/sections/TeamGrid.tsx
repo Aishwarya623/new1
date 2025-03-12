@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 interface TeamMember {
-  name: string;
+  id: string;
   role: string;
   credentials: string;
+  expertise: string[];
 }
 
 interface TeamGridProps {
@@ -15,62 +17,73 @@ interface TeamGridProps {
 export default function TeamGrid({ teamType }: TeamGridProps) {
   const coreTeam: TeamMember[] = [
     {
-      name: "Dr. Rajasekhar Bangaru",
+      id: "RAB",
       role: "AI Research Lead",
-      credentials: "PhD, Indian Institute of Science"
+      credentials: "PhD, Indian Institute of Science",
+      expertise: ["Machine Learning", "Computer Vision", "Neural Networks"]
     },
     {
-      name: "Dr. Bibin Francis",
+      id: "BIF",
       role: "AI Research Lead",
-      credentials: "PhD, Indian Institute of Science"
+      credentials: "PhD, Indian Institute of Science",
+      expertise: ["Natural Language Processing", "Deep Learning"]
     },
     {
-      name: "Prateek Singh",
+      id: "PRS",
       role: "AI Engineer",
-      credentials: "BS, IISc; Masters, AI, IIT KGP"
+      credentials: "BS, IISc; Masters, AI, IIT KGP",
+      expertise: ["Computer Vision", "Deep Learning"]
     },
     {
-      name: "Kaushik Kukadiya",
+      id: "KAK",
       role: "AI Engineer",
-      credentials: "MTech, AI, Indian Institute of Science"
+      credentials: "MTech, AI, Indian Institute of Science",
+      expertise: ["ML Systems", "Data Engineering"]
     },
     {
-      name: "Karmanya Beniwal",
+      id: "KAB",
       role: "AI Engineer",
-      credentials: "Masters, Smart Manufacturing, IISc"
+      credentials: "Masters, Smart Manufacturing, IISc",
+      expertise: ["Industrial AI", "Process Optimization"]
     },
     {
-      name: "Harshit Dubey",
+      id: "HAD",
       role: "AI Engineer",
-      credentials: "BS, Indian Institute of Science"
+      credentials: "BS, Indian Institute of Science",
+      expertise: ["ML Operations", "System Architecture"]
     }
   ];
 
   const softwareTeam: TeamMember[] = [
     {
-      name: "Rohit Katariya",
+      id: "ROK",
       role: "Senior Software Engineer",
-      credentials: "BTech, Computer Science"
+      credentials: "BTech, Computer Science",
+      expertise: ["Full Stack Development", "System Architecture"]
     },
     {
-      name: "Manjunath",
+      id: "MAN",
       role: "Senior Software Engineer",
-      credentials: "BTech, Computer Science"
+      credentials: "BTech, Computer Science",
+      expertise: ["Backend Development", "Database Design"]
     },
     {
-      name: "Tejaswini N",
+      id: "TEN",
       role: "Full Stack Developer",
-      credentials: "MCA"
+      credentials: "MCA",
+      expertise: ["Frontend Development", "UI/UX Design"]
     },
     {
-      name: "Navneetha N",
+      id: "NAN",
       role: "Front End Developer",
-      credentials: "MCA"
+      credentials: "MCA",
+      expertise: ["React", "UI Components"]
     },
     {
-      name: "Kiran",
+      id: "KIR",
       role: "Designer",
-      credentials: "BCA"
+      credentials: "BCA",
+      expertise: ["UI Design", "User Experience"]
     }
   ];
 
@@ -91,15 +104,21 @@ export default function TeamGrid({ teamType }: TeamGridProps) {
               <div className="flex items-center gap-4 mb-4">
                 <Avatar className="h-12 w-12 transform transition-transform duration-300 group-hover:scale-110">
                   <AvatarFallback className="bg-primary/10 text-primary">
-                    {member.name.split(' ').map(n => n[0]).join('')}
+                    {member.id}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className="font-semibold group-hover:text-primary transition-colors duration-300">{member.name}</h3>
-                  <p className="text-sm text-primary">{member.role}</p>
+                  <p className="text-sm text-primary font-medium">{member.role}</p>
+                  <p className="text-sm text-muted-foreground">{member.credentials}</p>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground">{member.credentials}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {member.expertise.map((skill, i) => (
+                  <Badge key={i} variant="secondary" className="text-xs">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </motion.div>
