@@ -25,7 +25,16 @@ export default function Contact() {
 
   const mutation = useMutation({
     mutationFn: async (data: any) => {
-      return await apiRequest("POST", "/api/contact", data);
+      try {
+        const response = await apiRequest("POST", "/api/contact", data);
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || "Failed to send message");
+        }
+        return response.json();
+      } catch (error: any) {
+        throw new Error(error.message || "Failed to send message");
+      }
     },
     onSuccess: () => {
       toast({
@@ -34,10 +43,10 @@ export default function Contact() {
       });
       form.reset();
     },
-    onError: () => {
+    onError: (error: Error) => {
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error.message || "Failed to send message. Please try again.",
         variant: "destructive"
       });
     }
@@ -91,7 +100,7 @@ export default function Contact() {
               name="company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Company</FormLabel>
+                  <FormLabel>Company (Optional)</FormLabel>
                   <FormControl>
                     <Input placeholder="Your company" {...field} />
                   </FormControl>
