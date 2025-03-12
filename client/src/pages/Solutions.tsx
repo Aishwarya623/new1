@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Brain, Eye, Database, Lock, Search, FileText } from "lucide-react";
+import { Brain, Eye, Database, Lock, Search, FileText, Plane, Camera, Box } from "lucide-react";
 
 export default function Solutions() {
   const nlpSolutions = [
@@ -24,14 +24,24 @@ export default function Solutions() {
 
   const cvSolutions = [
     {
-      icon: Eye,
-      title: "Object Detection",
-      description: "Real-time object detection using YOLO, SSD, and Faster R-CNN"
+      icon: Plane,
+      title: "Drone-Based Vision Systems",
+      description: "Advanced aerial computer vision solutions for surveillance, inspection, and monitoring using state-of-the-art drone technology"
+    },
+    {
+      icon: Camera,
+      title: "Real-Time Object Detection",
+      description: "High-performance object detection and tracking for industrial and security applications"
+    },
+    {
+      icon: Box,
+      title: "3D Scene Understanding",
+      description: "Advanced depth estimation and 3D reconstruction from drone and ground-based imagery"
     },
     {
       icon: Lock,
       title: "Security & Surveillance",
-      description: "Advanced facial recognition and anomaly detection systems"
+      description: "Intelligent monitoring systems with anomaly detection capabilities"
     },
     {
       icon: FileText,
@@ -39,6 +49,21 @@ export default function Solutions() {
       description: "Automated visual inspection and real-time quality monitoring"
     }
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
     <div className="container py-24 mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,22 +79,25 @@ export default function Solutions() {
         </p>
       </motion.div>
 
-      <Tabs defaultValue="nlp" className="max-w-4xl mx-auto">
+      <Tabs defaultValue="cv" className="max-w-4xl mx-auto">
         <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="nlp">Natural Language Processing</TabsTrigger>
           <TabsTrigger value="cv">Computer Vision</TabsTrigger>
+          <TabsTrigger value="nlp">Natural Language Processing</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="nlp">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {nlpSolutions.map((solution, index) => (
+        <TabsContent value="cv">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {cvSolutions.map((solution, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                variants={cardVariants}
               >
-                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10 h-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
                     <solution.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
@@ -81,9 +109,57 @@ export default function Solutions() {
                 </Card>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-12 p-6 bg-gray-50 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-12 p-6 bg-gray-50 rounded-lg"
+          >
+            <h3 className="text-xl font-semibold mb-4">Applications</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>• Infrastructure inspection and monitoring</li>
+              <li>• Agricultural crop analysis and mapping</li>
+              <li>• Security and surveillance systems</li>
+              <li>• Industrial quality control</li>
+              <li>• Real-time aerial monitoring and analytics</li>
+            </ul>
+          </motion.div>
+        </TabsContent>
+
+        <TabsContent value="nlp">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {nlpSolutions.map((solution, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+              >
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10 h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <CardHeader>
+                    <solution.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{solution.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{solution.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-12 p-6 bg-gray-50 rounded-lg"
+          >
             <h3 className="text-xl font-semibold mb-4">Key Features</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>• Standalone models without external API dependencies</li>
@@ -91,41 +167,7 @@ export default function Solutions() {
               <li>• Custom-tailored solutions for specific domains</li>
               <li>• Integration with existing systems</li>
             </ul>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="cv">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {cvSolutions.map((solution, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <CardHeader>
-                    <solution.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
-                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{solution.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{solution.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-12 p-6 bg-gray-50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4">Applications</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>• Manufacturing quality control</li>
-              <li>• Security and surveillance systems</li>
-              <li>• Automated visual inspection</li>
-              <li>• Real-time monitoring and analytics</li>
-            </ul>
-          </div>
+          </motion.div>
         </TabsContent>
       </Tabs>
     </div>

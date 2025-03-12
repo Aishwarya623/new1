@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Brain, FileText, Search, Code, LineChart } from "lucide-react";
+import { Brain, FileText, Search, Code, LineChart, Plane } from "lucide-react";
 
 interface DemoFeature {
   icon: any;
@@ -35,6 +35,12 @@ export default function AISolutionsDemo() {
 
   const cvFeatures: DemoFeature[] = [
     {
+      icon: Plane,
+      title: "Drone Vision Systems",
+      description: "Advanced aerial computer vision for infrastructure inspection and monitoring",
+      techStack: ["Drone Integration", "3D Reconstruction", "Real-time Processing"]
+    },
+    {
       icon: Code,
       title: "Real-time Object Detection",
       description: "High-performance object detection for industrial applications",
@@ -64,25 +70,27 @@ export default function AISolutionsDemo() {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="nlp" className="max-w-4xl mx-auto">
+        <Tabs defaultValue="cv" className="max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="nlp">Natural Language Processing</TabsTrigger>
             <TabsTrigger value="cv">Computer Vision</TabsTrigger>
+            <TabsTrigger value="nlp">Natural Language Processing</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="nlp">
+          <TabsContent value="cv">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {nlpFeatures.map((feature, index) => (
+              {cvFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <Card className="h-full">
+                  <Card className="h-full group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <CardHeader>
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <CardTitle>{feature.title}</CardTitle>
+                      <feature.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
+                      <CardTitle className="group-hover:text-primary transition-colors duration-300">{feature.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
@@ -98,19 +106,21 @@ export default function AISolutionsDemo() {
             </div>
           </TabsContent>
 
-          <TabsContent value="cv">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {cvFeatures.map((feature, index) => (
+          <TabsContent value="nlp">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {nlpFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <Card className="h-full">
+                  <Card className="h-full group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <CardHeader>
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <CardTitle>{feature.title}</CardTitle>
+                      <feature.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
+                      <CardTitle className="group-hover:text-primary transition-colors duration-300">{feature.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
