@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Head from "@/components/common/Head";
 import Hero from "@/components/sections/Hero";
+import AISolutionsDemo from "@/components/sections/AISolutionsDemo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Code, Building2, LineChart } from "lucide-react";
 import { motion } from "framer-motion";
@@ -94,6 +95,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AISolutionsDemo />
     </div>
   );
 }
