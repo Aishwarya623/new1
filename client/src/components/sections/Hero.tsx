@@ -21,8 +21,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto px-4">
-            Transforming industries through advanced AI solutions in Natural Language Processing
-            and Computer Vision.
+            Welcome to NovaAutomation Innovations Pvt. Ltd. – a startup born from the vision of India's brightest minds at IISc and IIT. We're harnessing the power of AI and big data to create indigenous solutions that transform industries, enhance lives, and drive global innovation from India.
           </p>
 
           <div className="flex justify-center gap-4 flex-wrap px-4">
