@@ -73,16 +73,17 @@ export default function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
                     <p className="text-primary font-medium">Client: {project.client}</p>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, i) => (
-                        <Badge key={i} variant="secondary">{tag}</Badge>
+                        <Badge key={i} variant="secondary" className="transition-all duration-300 hover:bg-primary/20">{tag}</Badge>
                       ))}
                     </div>
                   </CardContent>
@@ -102,15 +103,16 @@ export default function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, i) => (
-                        <Badge key={i} variant="secondary">{tag}</Badge>
+                        <Badge key={i} variant="secondary" className="transition-all duration-300 hover:bg-primary/20">{tag}</Badge>
                       ))}
                     </div>
                   </CardContent>

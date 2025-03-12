@@ -29,7 +29,6 @@ export default function Home() {
     }
   ];
 
-  // Improve scroll position on navigation
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,7 +39,7 @@ export default function Home() {
       <Hero />
 
       <section 
-        className="py-24 bg-gray-50 w-full"
+        className="py-24 bg-gradient-to-b from-gray-50 to-white w-full"
         aria-labelledby="features-heading"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +52,7 @@ export default function Home() {
           >
             <h2 
               id="features-heading" 
-              className="text-3xl font-bold mb-4"
+              className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent"
               tabIndex={0}
             >
               Why Choose NovaAutomata
@@ -77,16 +76,21 @@ export default function Home() {
                 viewport={{ once: true }}
                 role="listitem"
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
                     <feature.icon 
-                      className="h-10 w-10 text-primary mb-4"
+                      className="h-12 w-12 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110"
                       aria-hidden="true"
                     />
-                    <CardTitle>{feature.title}</CardTitle>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
+                      {feature.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">{feature.description}</p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>

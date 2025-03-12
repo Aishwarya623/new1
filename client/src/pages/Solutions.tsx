@@ -69,10 +69,11 @@ export default function Solutions() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
-                    <solution.icon className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>{solution.title}</CardTitle>
+                    <solution.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{solution.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">{solution.description}</p>
@@ -102,10 +103,11 @@ export default function Solutions() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardHeader>
-                    <solution.icon className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>{solution.title}</CardTitle>
+                    <solution.icon className="h-10 w-10 text-primary mb-4 transform transition-transform duration-300 group-hover:scale-110" />
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">{solution.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">{solution.description}</p>
