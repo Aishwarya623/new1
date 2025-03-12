@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import Head from "@/components/common/Head";
 import Hero from "@/components/sections/Hero";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Code, Building2, LineChart } from "lucide-react";
@@ -27,11 +29,20 @@ export default function Home() {
     }
   ];
 
+  // Improve scroll position on navigation
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full">
+      <Head />
       <Hero />
 
-      <section className="py-24 bg-gray-50 w-full">
+      <section 
+        className="py-24 bg-gray-50 w-full"
+        aria-labelledby="features-heading"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -40,13 +51,23 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Why Choose NovaAutomata</h2>
+            <h2 
+              id="features-heading" 
+              className="text-3xl font-bold mb-4"
+              tabIndex={0}
+            >
+              Why Choose NovaAutomata
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We combine academic excellence with industry expertise to deliver cutting-edge AI solutions.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            role="list"
+            aria-label="Features"
+          >
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -54,10 +75,14 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                role="listitem"
               >
                 <Card>
                   <CardHeader>
-                    <feature.icon className="h-10 w-10 text-primary mb-4" />
+                    <feature.icon 
+                      className="h-10 w-10 text-primary mb-4"
+                      aria-hidden="true"
+                    />
                     <CardTitle>{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
