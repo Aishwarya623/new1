@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Loader2 } from "lucide-react";
+import { ErrorBoundary } from "@/components/common/ErrorBoundary";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 // Lazy load pages
 const Home = lazy(() => import("@/pages/Home"));
@@ -29,18 +31,21 @@ function Router() {
     <div className="min-h-screen flex flex-col w-full">
       <Navbar />
       <main className="flex-grow w-full">
-        <Suspense fallback={<LoadingSpinner />}>
-          <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/solutions" component={Solutions} />
-            <Route path="/team" component={Team} />
-            <Route path="/projects" component={Projects} />
-            <Route path="/contact" component={Contact} />
-            <Route component={NotFound} />
-          </Switch>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/solutions" component={Solutions} />
+              <Route path="/team" component={Team} />
+              <Route path="/projects" component={Projects} />
+              <Route path="/contact" component={Contact} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
@@ -48,8 +53,10 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
-      <Toaster />
+      <ErrorBoundary>
+        <Router />
+        <Toaster />
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 }
