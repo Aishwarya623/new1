@@ -85,16 +85,17 @@ export default function TeamGrid({ teamType }: TeamGridProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
         >
-          <Card>
+          <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <CardContent className="pt-6">
               <div className="flex items-center gap-4 mb-4">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 transform transition-transform duration-300 group-hover:scale-110">
                   <AvatarFallback className="bg-primary/10 text-primary">
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className="font-semibold">{member.name}</h3>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors duration-300">{member.name}</h3>
                   <p className="text-sm text-primary">{member.role}</p>
                 </div>
               </div>

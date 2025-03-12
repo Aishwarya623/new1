@@ -65,9 +65,10 @@ export default function Team() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card>
+                <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <CardContent className="pt-6">
-                    <h3 className="text-xl font-semibold mb-2">{advisor.name}</h3>
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{advisor.name}</h3>
                     <p className="text-primary font-medium">{advisor.role}</p>
                     <p className="text-muted-foreground">{advisor.institution}</p>
                   </CardContent>
