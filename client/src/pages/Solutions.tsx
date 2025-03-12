@@ -1,24 +1,34 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Brain, Eye, Database, Lock, Search, FileText, Plane, Camera, Box } from "lucide-react";
+import { Brain, MessageSquare, Database, Lock, Search, FileText, Plane, Camera, Box, Bot, Sparkles } from "lucide-react";
 
 export default function Solutions() {
   const nlpSolutions = [
     {
       icon: Brain,
       title: "Large Language Models",
-      description: "State-of-the-art LLMs for advanced language understanding and generation"
+      description: "State-of-the-art LLMs for advanced language understanding and generation, powered by transformer architecture"
+    },
+    {
+      icon: Bot,
+      title: "Custom AI Agents",
+      description: "Specialized autonomous AI agents for task automation, decision-making, and workflow optimization"
+    },
+    {
+      icon: MessageSquare,
+      title: "Conversational AI",
+      description: "Advanced chatbots and virtual assistants with natural language understanding and contextual responses"
     },
     {
       icon: Database,
       title: "Document Processing",
-      description: "Automated digitization and processing of structured & unstructured data"
+      description: "Automated digitization and processing of structured & unstructured data with high accuracy"
     },
     {
       icon: Search,
       title: "Information Retrieval",
-      description: "Advanced RAG architecture for efficient information retrieval and insights"
+      description: "Advanced RAG architecture for efficient information retrieval and semantic search capabilities"
     }
   ];
 
@@ -133,7 +143,7 @@ export default function Solutions() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {nlpSolutions.map((solution, index) => (
               <motion.div
@@ -162,10 +172,11 @@ export default function Solutions() {
           >
             <h3 className="text-xl font-semibold mb-4">Key Features</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>• Standalone models without external API dependencies</li>
+              <li>• Custom-trained models for domain-specific tasks</li>
+              <li>• Advanced RAG (Retrieval Augmented Generation) capabilities</li>
+              <li>• Multi-agent systems for complex task automation</li>
               <li>• Secure and private data processing</li>
-              <li>• Custom-tailored solutions for specific domains</li>
-              <li>• Integration with existing systems</li>
+              <li>• Seamless integration with existing workflows</li>
             </ul>
           </motion.div>
         </TabsContent>

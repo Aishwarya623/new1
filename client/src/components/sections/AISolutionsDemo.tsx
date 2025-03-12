@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Brain, FileText, Search, Code, LineChart, Plane } from "lucide-react";
+import { Brain, FileText, Search, Code, LineChart, Plane, Bot, MessageSquare } from "lucide-react";
 
 interface DemoFeature {
   icon: any;
@@ -18,6 +18,18 @@ export default function AISolutionsDemo() {
       title: "Large Language Models",
       description: "Custom-trained language models for domain-specific tasks with enhanced performance",
       techStack: ["GPT", "BERT", "T5"]
+    },
+    {
+      icon: Bot,
+      title: "Custom AI Agents",
+      description: "Autonomous AI agents for task automation and decision-making",
+      techStack: ["Multi-Agent Systems", "Task Planning", "Reasoning"]
+    },
+    {
+      icon: MessageSquare,
+      title: "Conversational AI",
+      description: "Natural language understanding with contextual awareness",
+      techStack: ["Dialog Management", "Intent Recognition", "Context Handling"]
     },
     {
       icon: FileText,
