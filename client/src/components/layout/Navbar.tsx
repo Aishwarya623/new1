@@ -1,6 +1,5 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -52,7 +51,6 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
             <Button asChild variant="default">
               <Link href="/contact">Get Started</Link>
             </Button>
