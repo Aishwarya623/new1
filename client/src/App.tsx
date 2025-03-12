@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import { Loader2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import PageTransition from "@/components/common/PageTransition";
 
 // Lazy load pages
 const Home = lazy(() => import("@/pages/Home"));
@@ -33,14 +34,16 @@ function Router() {
       <main className="flex-grow w-full">
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
-            <Switch>
-              <Route path="/" component={Home} />
-              <Route path="/solutions" component={Solutions} />
-              <Route path="/team" component={Team} />
-              <Route path="/projects" component={Projects} />
-              <Route path="/contact" component={Contact} />
-              <Route component={NotFound} />
-            </Switch>
+            <PageTransition>
+              <Switch>
+                <Route path="/" component={Home} />
+                <Route path="/solutions" component={Solutions} />
+                <Route path="/team" component={Team} />
+                <Route path="/projects" component={Projects} />
+                <Route path="/contact" component={Contact} />
+                <Route component={NotFound} />
+              </Switch>
+            </PageTransition>
           </Suspense>
         </ErrorBoundary>
       </main>
