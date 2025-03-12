@@ -14,7 +14,6 @@ import PageTransition from "@/components/common/PageTransition";
 const Home = lazy(() => import("@/pages/Home"));
 const Solutions = lazy(() => import("@/pages/Solutions"));
 const Team = lazy(() => import("@/pages/Team"));
-const Projects = lazy(() => import("@/pages/Projects"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const About = lazy(() => import("@/pages/About")); // Added About import
@@ -38,10 +37,9 @@ function Router() {
             <PageTransition>
               <Switch>
                 <Route path="/" component={Home} />
-                <Route path="/about" component={About} /> {/* Added About route */}
+                <Route path="/about" component={About} />
                 <Route path="/solutions" component={Solutions} />
                 <Route path="/team" component={Team} />
-                <Route path="/projects" component={Projects} />
                 <Route path="/contact" component={Contact} />
                 <Route component={NotFound} />
               </Switch>
