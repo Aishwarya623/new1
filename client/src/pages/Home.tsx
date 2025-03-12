@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Head from "@/components/common/Head";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Code, Building2, LineChart } from "lucide-react";
 import { motion } from "framer-motion";
@@ -38,8 +37,6 @@ export default function Home() {
     <div className="w-full">
       <Head />
       <Hero />
-      <About />
-
       <section 
         className="py-24 bg-gradient-to-b from-gray-50 to-white w-full"
         aria-labelledby="features-heading"

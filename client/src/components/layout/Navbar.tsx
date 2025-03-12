@@ -13,6 +13,7 @@ export default function Navbar() {
   const [location] = useLocation();
 
   const navItems = [
+    { href: "/about", label: "About" },
     { href: "/solutions", label: "Solutions" },
     { href: "/team", label: "Team" },
     { href: "/projects", label: "Projects" },
