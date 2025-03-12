@@ -32,9 +32,16 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold mb-4">Contact</h3>
-            <p className="text-sm text-muted-foreground">
-              India
-            </p>
+            <ul className="space-y-2">
+              <li>
+                <Link 
+                  href="/contact" 
+                  className="text-sm text-muted-foreground hover:text-primary inline-flex items-center"
+                >
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
