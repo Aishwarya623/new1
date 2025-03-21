@@ -39,7 +39,7 @@ function RouterComponent() {
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
             <PageTransition>
-              <Router>
+              <Router basename="/Aishwarya">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
