@@ -104,8 +104,11 @@ var vite_config_default = defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
-    emptyOutDir: true
+    outDir: path.resolve(__dirname, "docs"),
+    // Output to "docs" for GitHub Pages
+    emptyOutDir: true,
+    // Clean the output directory before building
+    assetsDir: "assets"
   }
 });
 
