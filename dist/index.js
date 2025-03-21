@@ -84,6 +84,8 @@ import { fileURLToPath } from "url";
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = dirname(__filename);
 var vite_config_default = defineConfig({
+  base: "/Aishwarya/",
+  // <-- Move base here (outside build)
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -219,7 +221,14 @@ app.use((req, res, next) => {
   }
   const port = 8080;
   const host = "localhost";
-  server.listen(port, host, () => {
-    log(`Serving on ${host}:${port}`);
-  });
+  server.listen(
+    {
+      port,
+      host,
+      reusePort: true
+    },
+    () => {
+      log(`serving on ${host}:${port}`);
+    }
+  );
 })();
