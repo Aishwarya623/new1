@@ -11,6 +11,7 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 import PageTransition from "@/components/common/PageTransition";
 import dotenv from "dotenv";
 
+
 // Initialize dotenv
 dotenv.config();
 
@@ -20,7 +21,7 @@ const Solutions = lazy(() => import("@/pages/Solutions"));
 const Team = lazy(() => import("@/pages/Team"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const About = lazy(() => import("@/pages/About"));
-
+const NotFound = lazy(() => import("@/pages/not-found"));
 // Loading fallback component
 function LoadingSpinner() {
   return (
@@ -46,7 +47,7 @@ function RouterComponent() {
                   <Route path="/team" element={<Team />} />
                   <Route path="/contact" element={<Contact />} />
                   {/* Redirect all unknown routes to the Home page */}
-                  <Route path="*" element={<Home />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Router>
             </PageTransition>
