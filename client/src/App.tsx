@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Switch, Route } from "wouter";
+import { Route, Switch } from "wouter";  // Wouter import
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,7 +16,7 @@ const Solutions = lazy(() => import("@/pages/Solutions"));
 const Team = lazy(() => import("@/pages/Team"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
-const About = lazy(() => import("@/pages/About")); // Added About import
+const About = lazy(() => import("@/pages/About"));
 
 // Loading fallback component
 function LoadingSpinner() {
@@ -36,12 +36,13 @@ function Router() {
           <Suspense fallback={<LoadingSpinner />}>
             <PageTransition>
               <Switch>
-                <Route path="/" component={Home} />
-                <Route path="/about" component={About} />
-                <Route path="/solutions" component={Solutions} />
-                <Route path="/team" component={Team} />
-                <Route path="/contact" component={Contact} />
-                <Route component={NotFound} />
+                {/* Updated route setup for Wouter */}
+                <Route path="/" children={<Home />} />
+                <Route path="/about" children={<About />} />
+                <Route path="/solutions" children={<Solutions />} />
+                <Route path="/team" children={<Team />} />
+                <Route path="/contact" children={<Contact />} />
+                <Route children={<NotFound />} /> {/* Catch-all route */}
               </Switch>
             </PageTransition>
           </Suspense>
