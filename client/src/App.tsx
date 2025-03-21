@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Route, Switch } from "wouter"; // Wouter import
+import { Route, Switch, useLocation } from "wouter"; // Wouter import
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,6 +28,8 @@ function LoadingSpinner() {
 }
 
 function Router() {
+  const [location] = useLocation();
+  console.log("Current location: ", location);
   return (
     <div className="min-h-screen flex flex-col w-full">
       <Navbar />
