@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Route, Switch } from "wouter"; // Wouter import
+import { HashRouter as Router, Route, Routes } from "react-router-dom"; // Update to v6 imports
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import PageTransition from "@/components/common/PageTransition";
-import dotenv from "dotenv"; // Import dotenv to load environment variables
+import dotenv from "dotenv";
 
 // Initialize dotenv
 dotenv.config();
@@ -30,7 +30,7 @@ function LoadingSpinner() {
   );
 }
 
-function Router() {
+function RouterComponent() {
   return (
     <div className="min-h-screen flex flex-col w-full">
       <Navbar />
@@ -38,15 +38,17 @@ function Router() {
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
             <PageTransition>
-              <Switch>
-                <Route path="/" children={<Home />} />
-                <Route path="/about" children={<About />} />
-                <Route path="/solutions" children={<Solutions />} />
-                <Route path="/team" children={<Team />} />
-                <Route path="/contact" children={<Contact />} />
-                {/* Redirect all unknown routes to the Home page */}
-                <Route children={<Home />} />
-              </Switch>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/solutions" element={<Solutions />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/contact" element={<Contact />} />
+                  {/* Redirect all unknown routes to the Home page */}
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </Router>
             </PageTransition>
           </Suspense>
         </ErrorBoundary>
@@ -61,7 +63,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
-        <Router />
+        <RouterComponent />
         <Toaster />
       </ErrorBoundary>
     </QueryClientProvider>
