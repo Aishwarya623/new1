@@ -4,26 +4,34 @@ import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path, { dirname } from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath } from "url";
+import { copyFileSync } from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
-  base: "/Aishwarya/", // <-- Move base here (outside build)
+  base: "/Aishwarya/", // ✅ Correct base for GitHub Pages
 
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
+    {
+      name: "copy-redirects", // ✅ Custom plugin to copy _redirects after build
+      closeBundle() {
+        const src = path.resolve(__dirname, "_redirects"); // ✅ Source in main folder
+        const dest = path.resolve(__dirname, "docs/_redirects"); // ✅ Destination to docs
+
+        try {
+          copyFileSync(src, dest);
+          console.log("✅ _redirects copied successfully!");
+        } catch (err) {
+          console.error("❌ Error copying _redirects:", err);
+        }
+      },
+    },
   ],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
@@ -32,8 +40,8 @@ export default defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, 'docs'), // Output to "docs" for GitHub Pages
+    outDir: path.resolve(__dirname, "docs"), // ✅ Output to "docs" for GitHub Pages
     emptyOutDir: true, // Clean the output directory before building
-    assetsDir: 'assets',
+    assetsDir: "assets",
   },
 });
