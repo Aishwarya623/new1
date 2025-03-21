@@ -48,6 +48,7 @@ function RouterComponent() {
                   <Route path="/contact" element={<Contact />} />
                   {/* Redirect all unknown routes to the Home page */}
                   <Route path="*" element={<NotFound />} />
+                  <Route path="/" element={<Home />} />
                 </Routes>
               </Router>
             </PageTransition>
