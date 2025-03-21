@@ -41,14 +41,17 @@ function RouterComponent() {
             <PageTransition>
               <Router basename="/Aishwarya">
                 <Routes>
+                <Route path="/" element={<Home />} />
                   <Route path="/" element={<Home />} />
+                  
                   <Route path="/about" element={<About />} />
                   <Route path="/solutions" element={<Solutions />} />
                   <Route path="/team" element={<Team />} />
                   <Route path="/contact" element={<Contact />} />
                   {/* Redirect all unknown routes to the Home page */}
+                  <Route path="*" element={<NotFound></NotFound>} />  {/* This should be the last route */}
+
                   
-                  <Route path="/" element={<Home />} />
                 </Routes>
               </Router>
             </PageTransition>
