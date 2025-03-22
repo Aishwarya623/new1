@@ -40,7 +40,7 @@ function RouterComponent() {
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
             <PageTransition>
-              <Router basename="/new1"> {/* ✅ Correct basename for GitHub Pages */}
+              <Router> {/* ✅ Correct basename for GitHub Pages */}
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
