@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom"; // ✅ HashRouter is required for GitHub Pages
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // ✅ HashRouter is required for GitHub Pages
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Loader2 } from "lucide-react";
