@@ -81,44 +81,51 @@ import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path, { dirname } from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath } from "url";
-import { copyFileSync } from "fs";
+import { copyFileSync, existsSync } from "fs";
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = dirname(__filename);
 var vite_config_default = defineConfig({
-  base: "/new1/",
   // ✅ Correct base for GitHub Pages
+  base: "/new1/",
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
+    // ✅ Custom plugin to copy _redirects after build
     {
       name: "copy-redirects",
-      // ✅ Custom plugin to copy _redirects after build
       closeBundle() {
         const src = path.resolve(__dirname, "_redirects");
         const dest = path.resolve(__dirname, "docs/_redirects");
-        try {
-          copyFileSync(src, dest);
-          console.log("\u2705 _redirects copied successfully!");
-        } catch (err) {
-          console.error("\u274C Error copying _redirects:", err);
+        if (existsSync(src)) {
+          try {
+            copyFileSync(src, dest);
+            console.log("\u2705 _redirects copied successfully!");
+          } catch (err) {
+            console.error("\u274C Error copying _redirects:", err);
+          }
+        } else {
+          console.warn("\u26A0\uFE0F _redirects file not found. Skipping copy.");
         }
       }
     }
   ],
+  // ✅ Define path aliases for easier imports
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared")
     }
   },
+  // ✅ Set the root directory to "client"
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "docs"),
     // ✅ Output to "docs" for GitHub Pages
+    outDir: path.resolve(__dirname, "docs"),
     emptyOutDir: true,
-    // Clean the output directory before building
+    // Clean output directory before building
     assetsDir: "assets"
+    // Store built assets in "assets" folder
   }
 });
 
