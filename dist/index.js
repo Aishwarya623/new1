@@ -81,6 +81,7 @@ import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path, { dirname } from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath } from "url";
+import { copyFileSync, existsSync } from "fs";
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = dirname(__filename);
 var vite_config_default = defineConfig({
@@ -89,7 +90,25 @@ var vite_config_default = defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    themePlugin()
+    themePlugin(),
+    // ✅ Custom plugin to copy _redirects after build
+    {
+      name: "copy-redirects",
+      closeBundle() {
+        const src = path.resolve(__dirname, "_redirects");
+        const dest = path.resolve(__dirname, "docs/_redirects");
+        if (existsSync(src)) {
+          try {
+            copyFileSync(src, dest);
+            console.log("\u2705 _redirects copied successfully!");
+          } catch (err) {
+            console.error("\u274C Error copying _redirects:", err);
+          }
+        } else {
+          console.warn("\u26A0\uFE0F _redirects file not found. Skipping copy.");
+        }
+      }
+    }
   ],
   // ✅ Define path aliases for easier imports
   resolve: {
