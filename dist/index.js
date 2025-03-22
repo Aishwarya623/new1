@@ -85,7 +85,7 @@ import { copyFileSync } from "fs";
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = dirname(__filename);
 var vite_config_default = defineConfig({
-  base: "/Aishwarya/",
+  base: "/new1/",
   // ✅ Correct base for GitHub Pages
   plugins: [
     react(),

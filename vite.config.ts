@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
-  base: "/Aishwarya/", // ✅ Correct base for GitHub Pages
+  base: "/new1/", // ✅ Correct base for GitHub Pages
 
   plugins: [
     react(),
