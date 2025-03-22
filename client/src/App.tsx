@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom"; // Using HashRouter for GitHub Pages
+import { HashRouter, Route, Routes } from "react-router-dom"; // Using HashRouter for GitHub Pages
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -40,7 +40,7 @@ function RouterComponent() {
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
             <PageTransition>
-              <Router> {/* ✅ Correct basename for GitHub Pages */}
+              <HashRouter> {/* ✅ Correct basename for GitHub Pages */}
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
@@ -50,7 +50,7 @@ function RouterComponent() {
                   {/* ✅ NotFound for unknown routes */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </Router>
+              </HashRouter>
             </PageTransition>
           </Suspense>
         </ErrorBoundary>
